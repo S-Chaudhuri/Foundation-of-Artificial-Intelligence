@@ -1,0 +1,40 @@
+import sys
+def matrix():  
+    m,n=map(int,input().split())
+    mat = [[0 for x in range(m)] for y in range(n)] 
+    for i in range(m):
+        for j in range(n):
+            mat[i][j]=int(input())
+    return mat
+
+def sorting(mat):
+    n=len(mat)
+    y=[]
+    for i in range(n):
+        for j in range(n):
+            y.append(mat[i][j])
+    y.sort()
+    l=0
+    for i in range(n):
+        for j in range(n):
+            mat[i][j]=y[l]
+            l=l+1
+    return mat
+def mincost(cost,m,n):
+    if m<0 or n<0:
+        return sys.maxsize
+    elif m==0 and n==0:
+        return cost[m][n]
+    else:
+        return cost[m][n]+min(mincost(cost[m-1][n-1]),
+                              mincost(cost[m][n-1]),mincost(cost[m-1][n])) 
+def min(x, y, z):
+    if (x < y):
+        return x if (x < z) else z
+    else:
+        return y if (y < z) else z
+if __name__=='__main__':
+    m=matrix()
+    print(sorting(m))
+    o,p=map(int,input().split())
+    print(mincost(m,o,p))
