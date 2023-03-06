@@ -27,7 +27,7 @@ def mincost(cost,m,n):
         return cost[m][n]
     else:
         return cost[m][n]+min(mincost(cost[m-1][n-1]),
-                              mincost(cost[m][n-1]),mincost(cost[m-1][n])) 
+                              mincost(cost[m][n-1]),mincost(cost[m-1][n]))     #recursion for traversal
 def min(x, y, z):
     if (x < y):
         return x if (x < z) else z
